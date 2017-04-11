@@ -1,0 +1,67 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="input-group">
+		    <div class="input-group-addon">
+		    	<a href="" id="search-btn">Search</a>
+		    </div>
+		    <input type="text" class="form-control" id="course-num-input" placeholder="Enter course number">
+		</div>
+		<br>
+		<ul id="course-list" class="list-group">
+			<% courses.forEach(function(course) { %>
+				<li class="list-group-item">
+					<%=course.subject + course.catalog_number%>: <%=course.description%>
+					<br>
+					Section: <%=course.section%>
+				</li>
+			<% }); %>
+		</ul>
+	</div>
+
+	<script>
+		$(window).on('load', function(e) {
+			$('#course-num-input')[0].value = '';
+		})
+
+		$('#search-btn').on('click', function(e) {
+			e.preventDefault();
+			var searchQuery = $('#course-num-input')[0].value;
+			$('#course-num-input')[0].value = '';
+			$.ajax({
+				url: 'api/courses',
+				data: {
+					courseNum: searchQuery
+				}
+			}).done(function(res) {
+				console.log(res);
+				if (res.length === 0) {
+					$('#course-list').html(`
+						<h3 class="text-center"> No matches were found </h3>
+					`);
+					return;
+				};
+
+				$('#course-list').html(res.map(function(course) {
+					return `
+						<li class="list-group-item">
+							${course.subject + course.catalog_number}: ${course.description}
+							<br>
+							Section: ${course.section}
+						</li>
+					`
+				}))
+			});
+		})
+	</script>
+</body>
+</html>

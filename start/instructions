@@ -1,0 +1,46 @@
+TODOS:
+
+1. Make an example.js file and try running it using node
+	- Try logging "Hello World" to the console
+	- Try accessing DOM objects like document or window
+
+2. Create a new Node application: npm init
+	- 'Enter' though all prompts
+
+3. Create the following folder structure:
+	
+	- public
+	- views
+	---- pages
+	-------- index.ejs
+	---- partials
+	- server.js
+
+4. Install express: npm install --save express
+
+5. Install packages to help with HTTP requests: npm install --save body-parser method-override
+	- All packages are saved under folder node_modules
+
+6. Install package for our template engine: npm install --save ejs
+
+7. Install packages for bootstrap: npm install --save jquery bootstrap
+
+8 (optional). Add /node_modules to .gitignore for version control purposes (for future use of Git): echo "/node_modules" >> .gitignore
+
+9. Fill in server.js with some starting code (up until app.use)
+
+10. Listen on a port and start the app
+
+11. Write a start script inside package.json
+
+12. Create a route for '/'
+	- Voila, Express Hello World app
+
+13. Import dummy data from courses.js and send it to front end
+
+14. Create index.ejs and set view engine to ejs
+	- Default view path: ROOT/views
+
+15. Render all courses as a list
+
+16. Implement a search functionality to find courses by course number
